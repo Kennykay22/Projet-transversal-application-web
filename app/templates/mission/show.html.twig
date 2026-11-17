@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission{% endblock %}
+
+{% block body %}
+    <h1>Mission</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mission.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ mission.nom }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ mission.destination }}</td>
+            </tr>
+            <tr>
+                <th>Objectif</th>
+                <td>{{ mission.objectif }}</td>
+            </tr>
+            <tr>
+                <th>DureeJours</th>
+                <td>{{ mission.dureeJours }}</td>
+            </tr>
+            <tr>
+                <th>Equipage</th>
+                <td>{{ mission.equipage }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ mission.status }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ mission.description }}</td>
+            </tr>
+            <tr>
+                <th>TypeMission</th>
+                <td>{{ mission.typeMission }}</td>
+            </tr>
+            <tr>
+                <th>DateLancementPrevue</th>
+                <td>{{ mission.dateLancementPrevue ? mission.dateLancementPrevue|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ mission.dateCreation ? mission.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mission_index') }}">back to list</a>
+
+    <a href="{{ path('app_mission_edit', {'id': mission.id}) }}">edit</a>
+
+    {{ include('mission/_delete_form.html.twig') }}
+{% endblock %}

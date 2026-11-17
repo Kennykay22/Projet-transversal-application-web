@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orbit - Centre de contrôle{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>Orbit</h1>
+        <p>Bienvenue dans le centre de contrôle des missions spatiales.</p>
+
+        {% if app.user %}
+            <p>Bonjour {{ app.user.pseudo }}.</p>
+            <p><a href="{{ path('app_logout') }}">Se déconnecter</a></p>
+        {% else %}
+            <p>
+                <a href="{{ path('app_login') }}">Se connecter</a>
+                |
+                <a href="{{ path('app_register') }}">Créer un compte</a>
+            </p>
+        {% endif %}
+
+        <h2>Missions spatiales</h2>
+
+<p><a href="{{ path('app_mission_new') }}">Proposer une mission</a></p>
+
+{% for mission in missions %}
+    <article>
+        <h3>{{ mission.nom }}</h3>
+        <p>Destination : {{ mission.destination }}</p>
+        <p>Statut : {{ mission.status }}</p>
+        <a href="{{ path('app_mission_show', {'id': mission.id}) }}">Voir la mission</a>
+    </article>
+{% else %}
+    <p>Aucune mission proposée pour le moment.</p>
+{% endfor %}
+    </main>
+{% endblock %}
+
