@@ -54,6 +54,20 @@
         </tbody>
     </table>
 
+    <h2>Commentaires</h2>
+
+    {% for commentaire in mission.commentaires %}
+        <article>
+            <strong>{{ commentaire.auteur.pseudo }}</strong>
+            <small>le {{ commentaire.dateCommentaire|date('d/m/Y à H:i') }}</small>
+            <p>{{ commentaire.contenu }}</p>
+        </article>
+    {% else %}
+        <p>Aucun commentaire pour le moment.</p>
+    {% endfor %}
+
+    <p><a href="{{ path('app_commentaire_new') }}">Ajouter un commentaire</a></p>
+
     <a href="{{ path('app_mission_index') }}">back to list</a>
 
     <a href="{{ path('app_mission_edit', {'id': mission.id}) }}">edit</a>
