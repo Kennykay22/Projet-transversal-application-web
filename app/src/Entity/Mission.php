@@ -56,6 +56,12 @@ class Mission
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'mission')]
     private Collection $commentaires;
 
+    #[ORM\Column(length: 30)]
+    private ?string $roleMission = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nombreRecrues = null;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -224,6 +230,30 @@ class Mission
                 $commentaire->setMission(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRoleMission(): ?string
+    {
+        return $this->roleMission;
+    }
+
+    public function setRoleMission(string $roleMission): static
+    {
+        $this->roleMission = $roleMission;
+
+        return $this;
+    }
+
+    public function getNombreRecrues(): ?int
+    {
+        return $this->nombreRecrues;
+    }
+
+    public function setNombreRecrues(?int $nombreRecrues): static
+    {
+        $this->nombreRecrues = $nombreRecrues;
 
         return $this;
     }

@@ -6,6 +6,7 @@ use App\Entity\Mission;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,6 +21,21 @@ class MissionType extends AbstractType
             ->add('dureeJours')
             ->add('equipage')
             ->add('status')
+            ->add('roleMission', ChoiceType::class, [
+                'label' => 'Votre rôle dans la mission',
+                'placeholder' => 'Choisissez votre rôle',
+                'choices' => [
+                    'Capitaine' => 'capitaine',
+                    'Ingénieur' => 'ingenieur',
+                    'Scientifique' => 'scientifique',
+                    'Pilote' => 'pilote',
+                    'Médecin' => 'medecin',
+                ],
+            ])
+            ->add('nombreRecrues', null, [
+                'label' => 'Nombre de recrues recherchées',
+                'required' => false,
+            ])
             ->add('description')
             ->add('typeMission')
             ->add('dateLancementPrevue', null, [

@@ -5,6 +5,7 @@
 {% block body %}
     <main>
         <h1>Orbit</h1>
+
         <p>Bienvenue dans le centre de contrôle des missions spatiales.</p>
 
         {% if app.user %}
@@ -20,18 +21,25 @@
 
         <h2>Missions spatiales</h2>
 
-<p><a href="{{ path('app_mission_new') }}">Proposer une mission</a></p>
+        <p><a href="{{ path('app_mission_new') }}">Proposer une mission</a></p>
 
-{% for mission in missions %}
-    <article>
-        <h3>{{ mission.nom }}</h3>
-        <p>Destination : {{ mission.destination }}</p>
-        <p>Statut : {{ mission.status }}</p>
-        <a href="{{ path('app_mission_show', {'id': mission.id}) }}">Voir la mission</a>
-    </article>
-{% else %}
-    <p>Aucune mission proposée pour le moment.</p>
-{% endfor %}
+        {% for mission in missions %}
+            <article>
+                <h3>{{ mission.nom }}</h3>
+                <p>Destination : {{ mission.destination }}</p>
+                <p>Statut : {{ mission.status }}</p>
+                <a href="{{ path('app_mission_show', {'id': mission.id}) }}">Voir la mission</a>
+            </article>
+        {% else %}
+            <p>Aucune mission proposée pour le moment.</p>
+        {% endfor %}
+
+        <section class="api-card">
+            <h2>Image NASA du jour</h2>
+
+            <div id="nasa-apod">
+                Chargement de l'image NASA...
+            </div>
+        </section>
     </main>
 {% endblock %}
-

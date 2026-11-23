@@ -19,6 +19,28 @@
         {% endif %}
     </head>
     <body>
+    <header class="site-header">
+        <div class="container navigation">
+            <a class="brand" href="{{ path('app_home') }}">ORBIT</a>
+
+            <nav>
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <a href="{{ path('app_mission_index') }}">Missions</a>
+
+                {% if app.user %}
+                    <span class="user-name">{{ app.user.pseudo }}</span>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}">Connexion</a>
+                    <a href="{{ path('app_register') }}">Inscription</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-main container">
         {% block body %}{% endblock %}
-    </body>
+    </main>
+</body>
+    
 </html>
